@@ -1,6 +1,7 @@
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /*
@@ -14,30 +15,34 @@ import java.util.Scanner;
 public class desafio2 {
 
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(new File("//uploads/consultores.txt"));
+        Scanner scanner = new Scanner(new File("C:\\Users\\Vs Studio\\Desktop\\consultores.txt"));
 
-        ArrayList<Aniversariante> aniversariantes = new ArrayList<>();
+        ArrayList<Aniversariante> aniversariantes = new ArrayList<>(); // Certifique-se de ter essa lista definida antes do loop, se não a declarou.
 
         while (scanner.hasNextLine()) {
             String linha = scanner.nextLine();
-            String[] dados = linha.split("|");
+            String[] dados = linha.split("\\|");
 
             Aniversariante anivers = new Aniversariante();
             anivers.nome = dados[0];
             anivers.email = dados[1];
-            anivers.dataNascimento = new Date(dados[2]);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dataNascimento = LocalDate.parse(dados[2].trim(), formatter);
+            anivers.dataNascimento = dataNascimento;
 
-            Date hoje = new Date();
-            int mesAtual = hoje.getMonth();
-            int mesNascimento = anivers.dataNascimento.getMonth();
+            LocalDate hoje = LocalDate.now();
+            int mesAtual = hoje.getMonthValue();
+            int mesNascimento = anivers.dataNascimento.getMonthValue();
+
             if (mesAtual == mesNascimento) {
                 aniversariantes.add(anivers);
             }
         }
 
+
         scanner.close();
 
-        PrintWriter writer = new PrintWriter("aniversariantes.txt");
+        PrintWriter writer = new PrintWriter("C:\\Users\\Vs Studio\\Desktop\\aniversariantes.txt");
 
         for (Aniversariante anivers : aniversariantes) {
             writer.println(anivers.nome + "|" + anivers.email);
@@ -51,7 +56,7 @@ class Aniversariante {
 
     public String nome;
     public String email;
-    public Date dataNascimento;
+    public LocalDate dataNascimento;
 
     public Aniversariante() {
     }
