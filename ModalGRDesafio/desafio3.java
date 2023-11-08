@@ -1,5 +1,5 @@
 package ModalGRDesafio;
-import java.util.*;
+import java.util.Scanner;
 public class desafio3{
     
     public static void notasMaiorValor(int emprestimo){
