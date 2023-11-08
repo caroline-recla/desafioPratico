@@ -5,24 +5,53 @@ public class desafio3{
     public static void notasMaiorValor(int emprestimo){
         System.out.println("Notas de maior valor: ");
         int notas100 = emprestimo/100;
-        System.out.println(""+notas100+" X 100 reais;");
         int notas50 = (emprestimo%100)/50;
-        System.out.println(""+notas50+" X 50 reais.");
+        int notas20 = (emprestimo%50)/20;
+        int notas10 = (emprestimo%20)/10;
+        int notas5 = (emprestimo%10)/5;
+        int notas2 = (emprestimo%5)/2;
+        System.out.println(""+notas100+" X 100 reais;");
+        if(notas50 != 0){
+         System.out.println(""+notas50+" X 50 reais.");   
+        }
+        if(notas20 != 0){
+          System.out.println(""+notas20+" X 20 reais;");
+        }
+        if(notas10 != 0){
+          System.out.println(""+notas10+" X 10 reais.");  
+        }
+        if(notas5 != 0){
+          System.out.println(""+notas5+" X 5 reais.");
+        }
+        if(notas2 != 0){
+          System.out.println(""+notas2+" X 2 reais.");
+        }
     }
     
     public static void notasMenorValor(int emprestimo){
         System.out.println("Notas de menor valor: ");
         int notas20 = emprestimo/20;
-        System.out.println(""+notas20+" X 20 reais;");
         int notas10 = (emprestimo%20)/10;
-        System.out.println(""+notas10+" X 10 reais.");
         int notas5 = (emprestimo%10)/5;
-        System.out.println(""+notas5+" X 5 reais.");
         int notas2 = (emprestimo%5)/2;
-        System.out.println(""+notas2+" X 2 reais.");
+        System.out.println(""+notas20+" X 20 reais;");
+        if(notas10 != 0){
+          System.out.println(""+notas10+" X 10 reais.");  
+        }
+        if(notas5 != 0){
+          System.out.println(""+notas5+" X 5 reais.");
+        }
+        if(notas2 != 0){
+          System.out.println(""+notas2+" X 2 reais.");
+        }
     }
     public static void notasMeioAMeio(int emprestimo){
-      
+      int metadeValor = emprestimo/2;
+      System.out.println("Notas meio a meio: ");
+      System.out.println(metadeValor+" em notas de maior valor");
+      notasMaiorValor(metadeValor);
+      System.out.println(metadeValor+" em notas de menor valor");
+      notasMenorValor(metadeValor);
     }
     
     
@@ -41,8 +70,7 @@ public class desafio3{
 
     if(admissao>5){
       int emprestimo = scan.nextInt();
-      if(emprestimo<=(2*salario)){
-        if(emprestimo%2 == 0){
+      if(emprestimo > 0 && emprestimo <= 2 * salario && emprestimo % 2 == 0){
           System.out.println("Valor do Empréstimo: \n"+ emprestimo);
 
           notasMaiorValor(emprestimo);
@@ -51,11 +79,11 @@ public class desafio3{
           
           notasMenorValor(emprestimo);
           
+          System.out.println("");
           
-          
-        }
+          notasMeioAMeio(emprestimo);
       }else{
-        System.out.println("Insira um valor válido!");
+        System.out.println("Insira um valor de empréstimo válido (maior que 0, par e até duas vezes o salário).");
       }
         
       
