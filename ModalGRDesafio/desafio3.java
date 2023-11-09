@@ -1,4 +1,3 @@
-package ModalGRDesafio;
 import java.util.Scanner;
 
 public class desafio3{
